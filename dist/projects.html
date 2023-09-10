@@ -1,62 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">       
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="output.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+<link rel="stylesheet" href="output.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css" rel="stylesheet" />
 
-    <script async src="java.js"></script>
+<script async src="java.js"></script>
+<style>
+  body {
+    height: 500vh; /* Creating content to scroll through */
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  #positionText {
+    opacity: 0;
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 10px;
+    border-radius: 5px;
+    transition: opacity 0.5s, transform 0.5s; /* Combine the transitions */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    left: -100px;
+    transform: translateY(-50%) translateX(-100%);
+  }
+  #positionText.visible {
+    opacity: 1; /* When the class 'visible' is applied, opacity is set to 1 */
+    left: 20px; /* Position at the left of the screen when visible */
+    transform: translateY(-50%) translateX(0%); /* Adjust for vertical centering and slide in from the left */
+    transition: opacity 0.5s, transform 0.5s; /* Combine the transitions */
+  }
+  button {
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s; /* Adding transitions for color change and fade-in/fade-out */
+  }
+  button.active {
+    background-color: white;
+    opacity: 1; /* Ensure active buttons are fully visible */
+  }
 
-    <style>
-        .sticky {
-  position: -webkit-sticky;
-  position: sticky;
+  .menubuttons button {
+    background-color: rgba(255, 255, 255, 0); /* Add a background color for the button */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s; /* Adding transitions for size change and background color */
+  }
+
+  .menubuttons button:hover {
+    background-color: #555; /* Change background color on hover */
+  }
+
+  .popup-menu {
+  position: absolute;
   top: 0;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: rgba(0, 0, 0, 0); /* Start with transparent background */
+  left: -100%; /* Start with the menu off the left side of the screen */
+  transform: translateY(0%);
+  transition: left 0.5s, background-color 0.5s, transform 0.5s; /* Add transform transition */
+  }
+  .popup-menu.active {
+    background-color:  rgba(56, 56, 56, 0.9); /* Apply opaque background when active */
+    left: 20px; /* Move the menu to the right when active */
+    transform: translateY(0%) translateX(200%); /* Move the menu into place from the left */
+    transition: transform 0.3s;
+  }
+
+  .backToTop {
+  background-color: rgba(56, 56, 56, 0.9);
+  border-radius: 5px;
+  padding: 10px;
+  position: fixed;
+  bottom: -50px; /* Initial position outside the viewport */
+  left: 50%;
+  transform: translateX(-50%);
+  transition: bottom 0.3s, opacity 0.3s; /* Adding transition for smooth animation */
+  opacity: 0; /* Initially hidden */
 }
-    </style>
+
+.backToTop.visible {
+  bottom: 20px; /* Position in the middle of the viewport when visible */
+  opacity: 1; /* Fade in when visible */
+}
+
+</style>
 </head>
 <body style="background-color: #171717;" class="font-mono">
-    <div style="justify-content: flex-start;font-size: 30px; margin-top: 10%;" class="text-center">
-        <p>Projects</p>
-        <nav style="font-size: 20px;" class="text-center" id="navBar"></nav> <!-- Box around the Home nav bar , on hover, increase box size.-->
-        <nav style="font-size: 16px;margin-top: 1%;flex-direction: row;">
-            <a href="#1">1</a>
-            <a>|</a>
-            <a href="#2">2</a>
-        </nav>
+  <div id="positionText" class="visible menubuttons" style="background-color: #383838;">
+    <button id="projectsButton">Projects</button>
+    <div id="popupMenu" class="popup-menu">
+      <a href="#1"><button>1</button></a>
+      <a href="#2"><button>2</button></a>
+      <a href="#3"><button>3</button></a>
+      <a href="#4"><button>4</button></a>
+      <a href="#5"><button>5</button></a>
+      <a href="#6"><button>6</button></a>
+      <a href="#7"><button>7</button></a>
     </div>
-    <section class="section" id="1"> <!-- 1 -->
-        <div style="width: 0.1%; background-color: white; height: 100vh;"></div> <!-- White Line -->
-        <h1 style="font-size: 40px; margin-bottom: 1%;">1.</h1>
-        <div style="margin-left: 15%; border: 0px solid #ccc; max-width: 40%;">
-            <p style="font-size: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-    </section>
-    
-    <section class="section" id="2"> <!-- 2 -->
-        <h1 style="font-size: 40px; margin-bottom: 1%;">2.</h1>
-        <div style="margin-left: 45%; border: 0px solid #ccc; max-width: 40%;">
-            <p style="font-size: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-    </section>
-    <section class="section"> <!-- 3 -->
-        
-    </section>
-    <section class="section"> <!-- 4 -->
-        
-    </section>
-    <section class="section"> <!-- 5 -->
-        
-    </section>
-    <section class="section"> <!-- 6 -->
-        
-    </section>
+  </div>
+<div style="justify-content: flex-start;font-size: 30px; margin-top: 10%;" class="text-center">
+    <p>Projects</p>
+    <nav style="font-size: 20px;" class="text-center" id="navBar"></nav> <!-- Box around the Home nav bar , on hover, increase box size.-->
+    <nav style="font-size: 16px;margin-top: 1%;flex-direction: row;">
+        <a href="#1">1</a>
+        <a>|</a>
+        <a href="#2">2</a>
+        <a>|</a>
+        <a href="#3">3</a>
+        <a>|</a>
+        <a href="#4">4</a>
+        <a>|</a>
+        <a href="#5">5</a>
+        <a>|</a>
+        <a href="#6">6</a>
+        <a>|</a>
+        <a href="#7">7</a>
+    </nav>
+</div>
+<div id="backToTopLink" class="backToTop">
+  <a href="#BackToTop">Back To Top</a>
+</div>
+<section class="section" id="1"> <!-- 1 -->
+    <h1 style="font-size: 40px; margin-bottom: 1%;">1.</h1>
+    <h2 style="font-size: 20px; margin-bottom: 1%;color: rgb(196, 196, 196);margin-right: 9%;">Introduction to Web Design</h2>
+    <h3 style="font-size: 20px; margin-bottom: 1%;color: rgb(145, 145, 145);">28 Nov 2022</h3>
+    <div style="margin-left: 15%; border: 0px solid #ccc; max-width: 40%;color: rgb(255, 255, 255)">
+        <p style="font-size: 20px;margin-bottom: 5%;">A part of my first ever <b>programming</b> assignment in college, I had to start from scratch and research about HTML.
+          In doing so, it allowed me to learn more about the background of websites. This assisted me in planning and creating my first ever website.
+            </p>
+            <a href="https://hamza2702.github.io/" style="font-size: 20px;"><u>Check it out ↗</u></a>
+    </div>
+</section>
+
+<section class="section" id="2"> <!-- 2 -->
+  <h1 style="font-size: 40px; margin-bottom: 1%;">2.</h1>
+  <h2 style="font-size: 20px; margin-bottom: 1%;color: rgb(196, 196, 196);margin-left: 9%;">Introduction to Programming</h2>
+  <h3 style="font-size: 20px; margin-bottom: 1%;color: rgb(145, 145, 145);">10 Jan 2023</h3>
+    <div style="margin-left: 45%; border: 0px solid #ccc; max-width: 40%;color: rgb(255, 255, 255)">
+        <p style="font-size: 20px;margin-bottom: 5%;">On 28th November 2022, I submitted my introduction to programming assignment which consisted of a console program that had three screens; Main menu, Area and Perimeter.
+          The entire purpose of the program was to find the perimeter and area of a regular polygon. In the program, ASCII, colour and the use of arrow keys was used. The program was made entirely only for keyboard
+          use which meant that the user could navigate with only their keyboard.</p>
+          <a href="../projects/Introduction to Programming.exe" download style="font-size: 20px;"><u>Download →</u></a>
+    </div>
+</section>
+
+<section class="section" id="3"> <!-- 3 -->
+  <h1 style="font-size: 40px; margin-bottom: 1%;">3.</h1>
+  <h2 style="font-size: 20px; margin-bottom: 1%;color: rgb(196, 196, 196);margin-right: 6%;">Client Side Scripting</h2>
+  <h3 style="font-size: 20px; margin-bottom: 1%;color: rgb(145, 145, 145);">23 Jan 2023</h3>
+  <div style="margin-left: 15%; border: 0px solid #ccc; max-width: 40%;color: rgb(255, 255, 255)">
+      <p style="font-size: 20px;margin-bottom: 5%;">Compared to Introduction to Web Design, the Client Side Scripting assignment allowed me to implement JavaScript into my work.
+        This permitted me to create a functional website that allows the user to interact with features.
+          </p>
+          <a href="https://hamza2702.github.io/JavaSite/index.html" style="font-size: 20px;"><u>Visit the website ↗</u></a>
+  </div>
+</section>
+
+<section class="section" id="4"> <!-- 4 -->
+<h1 style="font-size: 40px; margin-bottom: 1%;">4.</h1>
+<h2 style="font-size: 20px; margin-bottom: 1%;color: rgb(196, 196, 196);margin-left: 9%;">Object Oriented Programming</h2>
+<h3 style="font-size: 20px; margin-bottom: 1%;color: rgb(145, 145, 145);">17 Apr 2023</h3>
+  <div style="margin-left: 45%; border: 0px solid #ccc; max-width: 40%;color: rgb(255, 255, 255)">
+      <p style="font-size: 20px;margin-bottom: 5%;">As with every assignment, I researched thoroughly into OOP which helped with understanding key concepts. I created an excellent program with 5 forms that allowed
+      the user to shop and check out. The program consisted of a couple of text based databases; one for users and admins. Administrators had the opportunity to log in and even add items into the kiosk menu!</p>
+        <a href="../projects/MiaOOP.exe" download style="font-size: 20px;"><u>Download →</u></a>
+  </div>
+</section>
+
+<section class="section" id="5"> <!-- 5 -->
+  <h1 style="font-size: 40px; margin-bottom: 1%;">5.</h1>
+  <h2 style="font-size: 20px; margin-bottom: 1%;color: rgb(196, 196, 196);margin-right: 9%;">Event Driven Programming</h2>
+  <h3 style="font-size: 20px; margin-bottom: 1%;color: rgb(145, 145, 145);">19 Apr 2023</h3>
+  <div style="margin-left: 15%; border: 0px solid #ccc; max-width: 40%;color: rgb(255, 255, 255)">
+      <p style="font-size: 20px;margin-bottom: 5%;">I learnt the concept of Event Driven Programming quite easily. Similarly to OOP, I created the same kiosk menu. However, instead of coding it professionally, it was hard coded in.
+        This meant that everything had to be changed from the main section of code and there was no ease of access.
+          </p>
+          <a href="../projects/MiasShop.exe" download style="font-size: 20px;"><u>Download →</u></a>
+  </div>
+</section>
+
+<section class="section" id="6"> <!-- 6 -->
+<h1 style="font-size: 40px; margin-bottom: 1%;">6.</h1>
+<h2 style="font-size: 20px; margin-bottom: 1%;color: rgb(196, 196, 196);margin-left: 9%;">Server Side Scripting</h2>
+<h3 style="font-size: 20px; margin-bottom: 1%;color: rgb(145, 145, 145);">26 Apr 2023</h3>
+  <div style="margin-left: 45%; border: 0px solid #ccc; max-width: 40%;color: rgb(255, 255, 255)">
+      <p style="font-size: 20px;margin-bottom: 5%;">Using PHP, a secure website was made which could register users <b>and</b> admins, and only allow users to see pages.
+      Both users and admins could then login to either side of the website. Administrators had the ability to create, edit, and delete pages. Also, administrators could create new users and change their user type.
+      </p>
+        <a href="../projects/Introduction to Programming.exe" download style="font-size: 20px;"><u>Download →</u></a>
+  </div>
+</section>
+
+<section class="section" id="7"> <!-- 7 -->
+  <h1 style="font-size: 40px; margin-bottom: 1%;">7.</h1>
+  <h2 style="font-size: 20px; margin-bottom: 1%;color: rgb(196, 196, 196);margin-right: 9%;">Games Programming</h2>
+  <h3 style="font-size: 20px; margin-bottom: 1%;color: rgb(145, 145, 145);">3 May 2023</h3>
+  <div style="margin-left: 15%; border: 0px solid #ccc; max-width: 40%;color: rgb(255, 255, 255)">
+      <p style="font-size: 20px;margin-bottom: 5%;">Creating a game from scratch is hard. With the help of a tutorial, I created the <button href="https://trex-runner.com/">Google offline dinosaur game</button>
+        but with different unique features. Such as, I've added in a text-based register and login system which will allow the user to compete on a text-based leaderboard. A pause and debug menu was implemented to
+        help create the game. A health system with a difficulty multiplier permitted the game to become great.
+          </p>
+          <a href="../projects/GamesProgramming.exe" download style="font-size: 20px;"><u>Download →</u></a>
+  </div>
+</section>
+
+
+<script>
+const positionText = document.getElementById('positionText');
+const projectsButton = document.getElementById('projectsButton');
+const popupMenu = document.getElementById('popupMenu');
+const links = document.querySelectorAll('.menubuttons button');
+
+let isMenuActive = false; // Flag to track if the popup menu is active
+
+function updateButtonColors() {
+  const scrollPosition = window.scrollY;
+  const viewportHeight = window.innerHeight;
+
+  // Reset the popup menu if scroll position is less than or equal to 0
+  if (scrollPosition <= 0 && isMenuActive) {
+    togglePopupMenu(); // Call the function to hide the popup menu
+  }
+
+  for (let i = 0; i < links.length; i++) {
+    const buttonPosition = i === 0 ? 0 : i * 100 * viewportHeight;
+    if (scrollPosition >= buttonPosition) {
+      links[i].classList.add('active');
+      links[i].removeAttribute('href');
+    } else {
+      links[i].classList.remove('active');
+      links[i].setAttribute('href', `#${i === 0 ? 'top' : i}`);
+    }
+  }
+
+  // Toggle the 'visible' class based on scroll position
+  if (scrollPosition > 0) {
+    positionText.classList.add('visible');
+    positionText.style.transform = `translateY(-50%) translateX(0%)`;
+  } else {
+    positionText.classList.remove('visible');
+    positionText.style.transform = `translateY(-50%) translateX(-100%)`;
+  }
+}
+
+function togglePopupMenu() {
+  popupMenu.classList.toggle('active');
+
+  if (!isMenuActive) {
+    // Set the flag to true and animate the menu into place
+    isMenuActive = true;
+    popupMenu.style.backgroundColor = 'rgba(56, 56, 56, 0.9)'; // Use the original color
+    popupMenu.style.transform = 'translateY(0%) translateX(200%)'; // Use the original transform values
+
+    // Remove the "active" class from the "Projects" button
+    projectsButton.classList.remove('active');
+
+    // Blur the "Projects" button to remove focus
+    projectsButton.blur();
+  } else {
+    // Set the flag to false and animate the menu back to the left
+    isMenuActive = false;
+    popupMenu.style.backgroundColor = 'rgba(0, 0, 0, 0)'; // Reset the background color
+    popupMenu.style.transform = 'translateY(0%) translateX(-100%)'; // Reset the transform values
+  }
+}
+
+// Call the togglePopupMenu function when the "Projects" button is clicked
+projectsButton.addEventListener('click', togglePopupMenu);
+
+// Prevent the default click behavior
+function preventClick(event) {
+  event.preventDefault();
+}
+
+// Call the updateButtonColors function on scroll
+window.addEventListener('scroll', updateButtonColors);
+
+// Initial call to set the button colors and links based on the initial position
+updateButtonColors();
+
+// ------------------------------------------------
+
+function updateBackToTopLink() {
+  const scrollPosition = window.scrollY;
+  const viewportHeight = window.innerHeight;
+
+  if (scrollPosition >= 1.5 * viewportHeight) {
+    backToTopLink.classList.add('visible');
+  } else {
+    backToTopLink.classList.remove('visible');
+  }
+}
+
+const backToTopLink = document.getElementById('backToTopLink');
+backToTopLink.addEventListener('click', scrollToTop);
+
+function scrollToTop() {
+  const duration = 500; // Duration of the scroll animation in milliseconds
+  const start = window.scrollY;
+  const startTime = performance.now();
+
+  function animateScroll(timestamp) {
+    const currentTime = timestamp - startTime;
+    const progress = Math.min(currentTime / duration, 1);
+    const ease = easingFunction(progress); // You can replace easingFunction with the desired easing function
+
+    window.scrollTo(0, start * (1 - ease));
+
+    if (currentTime < duration) {
+      requestAnimationFrame(animateScroll);
+    }
+  }
+
+  requestAnimationFrame(animateScroll);
+}
+
+// An example of an easing function (you can use different easing functions)
+function easingFunction(t) {
+  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+}
+
+// Call the updateBackToTopLink function on scroll
+window.addEventListener('scroll', updateBackToTopLink);
+
+// Initial call to update the "Back to Top" link based on the initial position
+updateBackToTopLink();
+
+
+</script>
 </body>
 </html>
+
+
+<!-- 
+
+  Intro to web design - 28 Nov 2022
+
+  Intro to programming - 10 Jan 2023
+
+  Client Side Scripting - 23 Jan 2023
+
+  Object Oriented Programming - 17 April 2023
+
+  Event Driven Programming - 19 April 2023
+
+  Server Side Scripting - 26 April 2023
+
+  Games Programming - 3 May 2023
+
+
+
+ -->
